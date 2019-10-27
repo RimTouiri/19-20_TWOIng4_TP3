@@ -15,6 +15,8 @@ class API_WEATHER{
       city = "paris";
     }
     this.city = city;
+    //this.countryCode =  ISO 3166;
+    this.cnt = 1;
   }
 
   // Faire la requete à l'API openweathermap
@@ -28,5 +30,30 @@ class API_WEATHER{
   // Retourne l'element HTML de l'icon symbolisant la méteo.
   getHTMLElementFromIcon(icon){
     return `<img src=${API_URL_ICON}${icon}@2x.png class="weather-icon"/>`
+  }
+
+  fetchTomorrow(){
+    this.cnt = 2;
+    return axios
+    .get(`${API_URL}?q=${this.city}&cnt={cnt}&appid=${API_KEY}`, {
+      crossdomain: true
+    })
+    }
+
+    fetchAfterTomorrow(){
+    this.cnt = 3;
+    return axios
+    .get(`${API_URL}?q=${this.city}&cnt={cnt}&appid=${API_KEY}`, {
+      crossdomain: true
+    })
+    }
+
+    fetchAfterAfterTomorrow(){
+    console.log(this.city);
+    console.log(this.cnt);
+    return axios
+    .get(`${API_URL}?q=${this.city}&cnt={cnt}&appid=${API_KEY}`, {
+      crossdomain: true
+    })
   }
 }
